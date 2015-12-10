@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/templateIn.xhtml">
+	<ui:define name="conteudo">
+		<h:form id="form">
+
+			<p:growl id="growl" showDetail="true" />
+
+			<p:dataTable id="compromissos" var="compromisso" paginator="true"
+				rows="10"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="5,10,15"
+				value="#{compromissosBean.compromissoList}">
+
+				<f:facet name="header">  
+            		Lista de Compromissos 
+        		</f:facet>
+
+				<br> </br>
+
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Nome" />
+					</f:facet>
+					<h:outputText value="#{compromisso.nome} " />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Data/Hora Inicio" />
+					</f:facet>
+					<h:outputText value="#{compromisso.dataInicio.time}">
+						<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+					</h:outputText>
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Data/Hora Término" />
+					</f:facet>
+					<h:outputText value="#{compromisso.dataTermino.time}">
+						<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+					</h:outputText>
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Local" />
+					</f:facet>
+					<h:outputText value="#{compromisso.local}" />
+				</p:column>
+
+			</p:dataTable>
+
+			<h:panelGrid columns="2">
+				<p:panel header="Exportar Todos os Dados">
+					<h:commandLink>
+						<p:graphicImage value="/imagens/excel.png" />
+						<p:dataExporter type="xls" target="compromissos"
+							fileName="compromissos" />
+					</h:commandLink>
+
+					<h:commandLink>
+						<p:graphicImage value="/imagens/csv.png" />
+						<p:dataExporter type="csv" target="compromissos"
+							fileName="compromissos" />
+					</h:commandLink>
+
+					<h:commandLink>
+						<p:graphicImage value="/imagens/xml.png" />
+						<p:dataExporter type="xml" target="compromissos"
+							fileName="compromissos" />
+					</h:commandLink>
+				</p:panel>
+
+				<p:panel header="Exportar Página Atual">
+					<h:commandLink>
+						<p:graphicImage value="/imagens/excel.png" />
+						<p:dataExporter type="xls" target="compromissos"
+							fileName="compromissos" pageOnly="true" />
+					</h:commandLink>
+
+					<h:commandLink>
+						<p:graphicImage value="/imagens/csv.png" />
+						<p:dataExporter type="csv" target="compromissos"
+							fileName="compromissos" pageOnly="true" />
+					</h:commandLink>
+
+					<h:commandLink>
+						<p:graphicImage value="/imagens/xml.png" />
+						<p:dataExporter type="xml" target="compromissos"
+							fileName="compromissos" pageOnly="true" />
+					</h:commandLink>
+				</p:panel>
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+
+</html>

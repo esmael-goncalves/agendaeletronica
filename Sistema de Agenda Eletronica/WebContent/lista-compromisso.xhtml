@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/templateIn.xhtml">
+	<ui:define name="conteudo">
+		<h:form id="form">
+
+			<p:growl id="growl" showDetail="true" />
+
+			<p:dataTable id="compromissos" var="compromisso" paginator="true"
+				rows="10"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="5,10,15"
+				value="#{compromissosBean.compromissoList}"
+				selection="#{compromissosBean.compromisso}" selectionMode="single"
+				rowKey="#{compromisso.nome}">
+
+				<p:ajax event="rowSelect" update=":form:display :form:growl"
+					oncomplete="compromissoDetail.show()" />
+				<p:ajax event="rowUnselect" update=":form:growl" />
+
+				<f:facet name="header">  
+            Lista de Compromissos 
+        </f:facet>
+
+				<br> </br>
+
+				<p:column headerText="Nome">  
+            		#{compromisso.nome}  
+        		</p:column>
+
+				<p:column headerText="Data/Hora Inicio">
+					<h:outputText value="#{compromisso.dataInicio.time}">
+						<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+					</h:outputText>
+				</p:column>
+
+				<p:column headerText="Data/Hora Término">
+					<h:outputText value="#{compromisso.dataTermino.time}">
+						<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+					</h:outputText>
+				</p:column>
+
+				<p:column headerText="Local">  
+            		#{compromisso.local}  
+        		</p:column>
+
+			</p:dataTable>
+
+			<p:dialog id="dialog" header="Detalhes do Compromisso"
+				widgetVar="compromissoDetail" resizable="false" showEffect="explode"
+				hideEffect="explode">
+
+				<h:panelGrid id="display" columns="2" cellpadding="4">
+
+					<f:facet name="header">  
+                Informações Compromisso
+            </f:facet>
+
+					<h:outputLabel for="nome" value="Nome: " />
+					<p:inputText id="nome" label="Nome" required="true"
+						style="width:350px" value="#{compromissosBean.compromisso.nome}" />
+
+					<h:outputLabel for="dataInicial" value="Data/Hora Inicio: "></h:outputLabel>
+					<p:calendar value="#{compromissosBean.compromisso.dataInicio.time}"
+						locale="pt" showButtonPanel="true" navigator="true"
+						id="dataInicial" pattern="dd/MM/yyyy HH:mm" required="true" />
+
+					<h:outputLabel for="dataFinal" value="Data/Hora Término: "></h:outputLabel>
+					<p:calendar
+						value="#{compromissosBean.compromisso.dataTermino.time}"
+						locale="pt" showButtonPanel="true" navigator="true" id="dataFinal"
+						pattern="dd/MM/yyyy HH:mm" required="true" />
+
+					<h:outputLabel for="local" value="Local: " />
+					<p:inputText id="local" label="Local" style="width:350px"
+						value="#{compromissosBean.compromisso.local}" required="true" />
+
+					<h:outputLabel for="descricao" value="Descrição: "></h:outputLabel>
+					<p:inputTextarea value="#{compromissosBean.compromisso.descricao}"
+						id="descricao" rows="10" cols="50" counter="counter"
+						maxlength="100" counterTemplate="{0} caracteres restantes."
+						autoResize="false">
+					</p:inputTextarea>
+					<h:outputText id="counter" />
+					<hr></hr>
+
+					<p:commandButton value="Salvar" update="@form"
+						action="#{compromissosBean.altera}" icon="ui-icon-disk" />
+
+					<p:commandButton id="deleteButton" value="Excluir" update="@form"
+						icon="ui-icon-trash" title="Delete"
+						action="#{compromissosBean.remove(compromisso)}" />
+				</h:panelGrid>
+			</p:dialog>
+
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+
+</html>

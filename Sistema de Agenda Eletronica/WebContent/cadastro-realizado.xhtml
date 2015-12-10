@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/templateOut.xhtml">
+	<ui:define name="conteudo">
+		<h:form>
+			<p:panel header="Cadastro de Usuários" style="width:800px">
+				<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+				<h:panelGrid columns="2" columnClasses="label, value"
+					styleClass="grid">
+					<h:outputText value="Nome: " />
+					<h:outputText label="Nome"
+						value="#{usuarioBean.ultimoUsuario.nomeUsuario}" />
+
+					<h:outputText value="Data de Nascimento: " />
+					<h:outputText value="#{usuarioBean.ultimoUsuario.nascimentoUsuario.time}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+
+					<h:outputText value="Rua/Avenida " />
+					<h:outputText value="#{usuarioBean.ultimoUsuario.enderecoUsuario}" label="Rua/Avenida" />
+
+					<h:outputText value="Código Postal: " />
+					<h:outputText value="#{usuarioBean.ultimoUsuario.codigoPostalusuario}" label="Código Postal"/>
+
+					<h:outputText value="Cidade: " />
+					<h:outputText value="#{usuarioBean.ultimoUsuario.cidadeUsuario}" label="Cidade"/>
+
+					<h:outputText value="Estado: " />
+					<h:outputText value="#{usuarioBean.ultimoUsuario.estadoUsuario}" label="Estado"/>
+
+					<h:outputText value="País: " />
+					<h:outputText value="#{usuarioBean.ultimoUsuario.paisUsuario}" label="País"/>
+
+				
+
+					<h:outputText value="Email: " />
+					<h:outputText label="Email"
+						value="#{usuarioBean.ultimoUsuario.emailUsuario}" />
+
+					<h:outputText value="Telefones: " />
+					<p:dataList value="#{usuarioBean.ultimoUsuario.telefoneUsuario}" var="telefone">
+						#{telefone.numeroTelefone}
+					</p:dataList>
+
+
+					<h:outputText value="Pergunta Secreta: "></h:outputText>
+					<h:outputText  id="pergunta"
+						value="#{usuarioBean.ultimoUsuario.perguntaSecretaUsuario}"></h:outputText>
+
+					<h:outputText value="Resposta Secreta: "></h:outputText>
+					<h:outputText id="resposta" value="#{usuarioBean.ultimoUsuario.respostaSecretaUsuario}"></h:outputText>
+
+					<h:outputText value="Senha: " />
+					<h:outputText id="senha" 
+						value="#{usuarioBean.ultimoUsuario.senhaUsuario}">
+					</h:outputText>
+
+				</h:panelGrid>
+			
+			</p:panel>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+
+</html>

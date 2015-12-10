@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/templateOut.xhtml">
+	<ui:define name="conteudo">
+		<h:form>
+			<p:panel header="Cadastro de Usuários" style="width:1000px">
+				<p:messages id="messages" showDetail="true" autoUpdate="true"
+					closable="true" />
+				<h:panelGrid columns="2" columnClasses="label, value"
+					styleClass="grid">
+					<h:outputLabel for="nome" value="Nome: *" />
+					<p:inputText id="nome" required="true" label="Nome"
+						style="width:350px" value="#{usuarioBean.usuario.nomeUsuario}" />
+
+					<h:outputLabel for="nascimento" value="Data de Nascimento: " />
+					<p:inputText id="nascimento"
+						value="#{usuarioBean.usuario.nascimentoUsuario.time}"
+						style="width:350px">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</p:inputText>
+
+					<h:outputLabel for="endereco" value="Rua/Avenida " />
+					<p:inputText id="endereco"
+						value="#{usuarioBean.usuario.enderecoUsuario}" label="Rua/Avenida"
+						style="width:350px" />
+
+					<h:outputLabel for="codpostal" value="Código Postal: " />
+					<p:inputMask id="codpostal" mask="99999-999"
+						value="#{usuarioBean.usuario.codigoPostalusuario}"
+						label="Código Postal" style="width:350px" />
+
+					<h:outputLabel for="cidade" value="Cidade " />
+					<p:inputText id="cidade"
+						value="#{usuarioBean.usuario.cidadeUsuario}" label="Cidade"
+						style="width:350px" />
+
+					<h:outputLabel for="estado" value="Estado " />
+					<p:inputText id="estado"
+						value="#{usuarioBean.usuario.estadoUsuario}" label="Estado"
+						style="width:350px" />
+
+					<h:outputLabel for="pais" value="País " />
+					<p:inputText id="pais" value="#{usuarioBean.usuario.paisUsuario}"
+						label="País" style="width:350px" />
+
+					<h:outputLabel for="email" value="Email: *" />
+					<p:inputText id="email" required="true" label="Email"
+						value="#{usuarioBean.usuario.emailUsuario}" style="width:350px" />
+
+					<h:outputLabel for="email-confirm" value=" Confirmação de Email: *" />
+					<p:inputText id="email-confirm" required="true"
+						label="Confirmação de Email" value="#{usuarioBean.email}"
+						style="width:350px" />
+
+					<h:outputLabel for="telefone" value="Telefone: " />
+					<p:inputMask id="telefone" mask="(99) 9999-9999"
+						value="#{usuarioBean.numeroTelefone}" style="width:350px" required="true"/>
+
+					<h:outputLabel for="telefone2" value="Telefone: " />
+					<p:inputMask id="telefone2" mask="(99) 9999-9999"
+						value="#{usuarioBean.numeroTelefone}" style="width:350px" required="true"/>
+
+
+					<h:outputLabel for="pergunta" value="Pergunta Secreta: *"></h:outputLabel>
+					<p:selectOneMenu id="pergunta" required="true"
+						label="Pergunta Secreta"
+						value="#{usuarioBean.usuario.perguntaSecretaUsuario}">
+						<f:selectItem itemLabel="Selecione uma Opção" itemValue="" />
+						<f:selectItem itemLabel="Estado de Nascimento da Minha Mãe"
+							itemValue="Estado de Nascimento da Minha Mãe" />
+						<f:selectItem itemLabel="Meu Prato Favorito é"
+							itemValue="Meu Prato Favorito" />
+						<f:selectItem itemLabel="Escola Em Que Estudei"
+							itemValue="Escola Em Que Estudei" />
+					</p:selectOneMenu>
+
+					<h:outputLabel for="resposta" value="Resposta Secreta: *" />
+					<p:inputText required="true" id="aresposta"
+						label="Resposta Secreta"
+						value="#{usuarioBean.usuario.respostaSecretaUsuario}"
+						style="width:350px"></p:inputText>
+
+					<h:outputLabel for="senha" value="Senha: *" />
+					<p:password id="asenha" feedback="true" required="true"
+						label="Senha" style="width:350px"
+						value="#{usuarioBean.usuario.senhaUsuario}" size="6">
+					</p:password>
+
+					<h:outputLabel for="senha-confirm" value="Confirmação de Senha: *" />
+					<p:password id="senha-confirm" feedback="false" required="true"
+						label="Confirmação de Senha" style="width:350px"
+						value="#{usuarioBean.senha}" size="6">
+					</p:password>
+
+					<p:commandButton value="Enviar" update="@form"
+						action="#{usuarioBean.adiciona}" icon="ui-icon-disk" />
+				</h:panelGrid>
+
+			</p:panel>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+
+</html>

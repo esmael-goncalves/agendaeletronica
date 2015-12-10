@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/templateIn.xhtml">
+	<ui:define name="conteudo">
+		<h:form id="form">
+
+			<p:growl id="growl" showDetail="true" />
+
+			<p:dataTable id="contatos" var="contato" paginator="true" rows="10"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="5,10,15" value="#{contatosBean.contatos}"
+				selection="#{contatosBean.contato}" selectionMode="single"
+				rowKey="#{contato.nomeContato}">
+
+				<p:ajax event="rowSelect" update=":form:display :form:growl"
+					oncomplete="contatoDetail.show()" />
+				<p:ajax event="rowUnselect" update=":form:growl" />
+
+				<f:facet name="header">  
+            Lista de Contatos  
+        </f:facet>
+
+				<br> </br>
+
+				<p:column headerText="Nome">  
+            		#{contato.nomeContato}  
+        		</p:column>
+				<p:column headerText="Aniversário">
+					<h:outputText value="#{contato.nascimentoContato.time}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+
+				</p:column>
+				<p:column headerText="Endereço">  
+            		#{contato.enderecoContato},
+            		#{contato.cidadeContato}, 
+            		#{contato.estadoContato},
+            		#{contato.paisContato}  
+        		</p:column>
+				<p:column headerText="Email">  
+            		#{contato.emailContato}  
+        		</p:column>
+				<p:column headerText="Telefone">
+					<p:dataList value="#{contato.telefoneContato}" var="telefone">
+						#{telefone.numeroTelefone}
+					</p:dataList>
+
+				</p:column>
+
+			</p:dataTable>
+			
+			<p:dialog id="dialog" header="Detalhes do Contato"
+				widgetVar="contatoDetail" resizable="false" showEffect="explode"
+				hideEffect="explode">
+
+				<h:panelGrid id="display" columns="2" cellpadding="4">
+
+					<f:facet name="header">  
+                Informações Contato  
+            </f:facet>
+
+					<h:outputLabel for="nome" value="Nome: " />
+					<p:inputText id="nome" required="true" label="Nome"
+						style="width:350px" value="#{contatosBean.contato.nomeContato}" />
+
+					<h:outputLabel for="nascimento" value="Data de Nascimento: " />
+					<p:inputText id="nascimento"
+						value="#{contatosBean.contato.nascimentoContato.time}"
+						style="width:350px">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</p:inputText>
+
+					<h:outputLabel for="endereco" value="Rua/Avenida " />
+					<p:inputText id="endereco"
+						value="#{contatosBean.contato.enderecoContato}"
+						label="Rua/Avenida" style="width:350px" />
+
+					<h:outputLabel for="codpostal" value="Código Postal: " />
+					<p:inputMask id="codpostal" mask="99999-999"
+						value="#{contatosBean.contato.codigoPostalContato}"
+						label="Código Postal" style="width:350px" />
+
+					<h:outputLabel for="cidade" value="Cidade " />
+					<p:inputText id="cidade"
+						value="#{contatosBean.contato.cidadeContato}" label="Cidade"
+						style="width:350px" />
+
+					<h:outputLabel for="estado" value="Estado " />
+					<p:inputText id="estado"
+						value="#{contatosBean.contato.estadoContato}" label="Estado"
+						style="width:350px" />
+
+					<h:outputLabel for="pais" value="País " />
+					<p:inputText id="pais" value="#{contatosBean.contato.paisContato}"
+						label="País" style="width:350px" />
+
+					<h:outputLabel for="email" value="Email: " />
+					<p:inputText id="email" required="true" label="Email"
+						value="#{contatosBean.contato.emailContato}" style="width:350px" />
+
+					<h:outputLabel for="telefone" value="Telefone: " />
+
+					<p:dataList value="#{contatosBean.contato.telefoneContato}"
+						var="telefone">
+						<p:inputText id="telefone" value="#{telefone.numeroTelefone}"
+							style="width:300px" />
+					</p:dataList>
+
+					<p:commandButton value="Salvar" update="@form"
+						action="#{contatosBean.altera}" icon="ui-icon-disk" />
+
+					<p:commandButton id="deleteButton" value="Excluir" update="@form"
+						icon="ui-icon-trash" title="Delete"
+						action="#{contatosBean.remove(contato)}" />
+				</h:panelGrid>
+			</p:dialog>
+
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+
+</html>

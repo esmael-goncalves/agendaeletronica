@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/templateIn.xhtml">
+	<ui:define name="conteudo">
+		<h:form>
+			<p:panel header="Cadastro de Compromisso" style="width:1000px">
+				<p:messages id="messages" showDetail="true" autoUpdate="true"
+					closable="true" />
+				<h:panelGrid columns="2" columnClasses="label, value"
+					styleClass="grid">
+
+					<h:outputLabel for="nome" value="Nome Compromisso: *"></h:outputLabel>
+					<h:outputLabel value="#{compromissosBean.ultimoCompromisso.nome}"
+						id="nome"></h:outputLabel>
+
+					<h:outputLabel for="dataInicial" value="Data/Hora Inicio: *"></h:outputLabel>
+					<h:outputLabel value="#{compromissosBean.ultimoCompromisso.dataInicio.time}"
+						id="dataInicial">
+						<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+					</h:outputLabel>
+
+					<h:outputLabel for="dataFinal" value="Data/Hora Inicio: *"></h:outputLabel>
+					<h:outputLabel value="#{compromissosBean.ultimoCompromisso.dataInicio.time}"
+						id="dataFinal">
+						<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+					</h:outputLabel>
+
+					<h:outputLabel for="descricao" value="Descrição: "></h:outputLabel>
+					<p:inputTextarea value="#{compromissosBean.ultimoCompromisso.descricao}"
+						id="descricao" rows="10" cols="50" autoResize="false"
+						disabled="true">
+					</p:inputTextarea>
+				</h:panelGrid>
+
+			</p:panel>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+</html>

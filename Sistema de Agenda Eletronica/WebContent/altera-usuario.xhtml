@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/templateIn.xhtml">
+	<ui:define name="conteudo">
+		<h:form>
+			<p:panel header="Alterar Informações Usuário" >
+				<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />  
+				<h:panelGrid columns="2" columnClasses="label, value"
+					styleClass="grid">
+					<h:outputLabel for="nome" value="Nome: *" />
+					<p:inputText id="nome" required="true" label="Nome"
+						style="width:350px" value="#{minhaContaBean.usuario.nomeUsuario}" />
+
+					<h:outputLabel for="nascimento" value="Data de Nascimento: " />
+					<p:inputText id="nascimento"
+						value="#{minhaContaBean.usuario.nascimentoUsuario.time}"
+						style="width:350px">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</p:inputText>
+
+					<h:outputLabel for="endereco" value="Rua/Avenida " />
+					<p:inputText id="endereco"
+						value="#{minhaContaBean.usuario.enderecoUsuario}" label="Rua/Avenida"
+						style="width:350px" />
+
+					<h:outputLabel for="codpostal" value="Código Postal: " />
+					<p:inputMask id="codpostal" mask="99999-999"
+						value="#{minhaContaBean.usuario.codigoPostalusuario}"
+						label="Código Postal" style="width:350px" />
+
+					<h:outputLabel for="cidade" value="Cidade " />
+					<p:inputText id="cidade"
+						value="#{minhaContaBean.usuario.cidadeUsuario}" label="Cidade"
+						style="width:350px" />
+
+					<h:outputLabel for="estado" value="Estado " />
+					<p:inputText id="estado"
+						value="#{minhaContaBean.usuario.estadoUsuario}" label="Estado"
+						style="width:350px" />
+
+					<h:outputLabel for="pais" value="País " />
+					<p:inputText id="pais" value="#{minhaContaBean.usuario.paisUsuario}"
+						label="País" style="width:350px" />
+
+
+
+					<h:outputLabel for="email" value="Email: *" />
+					<p:inputText id="email" required="true" label="Email"
+						value="#{minhaContaBean.usuario.emailUsuario}" style="width:350px" />
+						
+					<h:outputLabel for="email-confirm" value=" Confirmação de Email: *" />
+					<p:inputText id="email-confirm" required="true" label="Confirmação de Email"
+						value="#{minhaContaBean.email}" style="width:350px" />
+					
+					<h:outputLabel for="telefone" value="Telefone: " />
+					<p:inputMask id="telefone" mask="(99) 9999-9999"
+						value="#{minhaContaBean.usuario.telefoneUsuario}" style="width:350px" />
+
+					<h:outputLabel for="apergunta" value="Pergunta Secreta: *"></h:outputLabel>
+					<p:selectOneMenu id="apergunta" required="true" label="Pergunta Secreta"
+						value="#{minhaContaBean.usuario.perguntaSecretaUsuario}">
+						<f:selectItem itemLabel="Selecione uma Opção" itemValue="" />
+						<f:selectItem itemLabel="Estado de Nascimento da Minha Mãe"
+							itemValue="Estado de Nascimento da Minha Mãe" />
+						<f:selectItem itemLabel="Meu Prato Favorito é"
+							itemValue="Meu Prato Favorito" />
+						<f:selectItem itemLabel="Escola Em Que Estudei"
+							itemValue="Escola Em Que Estudei" />
+					</p:selectOneMenu>
+
+					<h:outputLabel for="resposta" value="Resposta Secreta: *" />
+					<p:inputText required="true" id="aresposta" label="Resposta Secreta"
+						value="#{minhaContaBean.usuario.respostaSecretaUsuario}"
+						style="width:350px"></p:inputText>
+
+
+					<p:commandButton value="Salvar Alterações" update="@form"
+					action="#{minhaContaBean.alterarUsuario}" icon="ui-icon-disk"/>
+				</h:panelGrid>
+				
+			</p:panel>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+
+</html>

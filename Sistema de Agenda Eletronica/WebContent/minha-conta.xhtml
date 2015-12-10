@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/templateIn.xhtml">
+	<ui:define name="conteudo">
+		<h:form>
+			<p:panel header="Minha Conta">
+				<p:messages id="messages" showDetail="true" autoUpdate="true"
+					closable="true" />
+				<p:tabView orientation="left">
+
+					<p:tab title="Minhas Informações">
+						<h:panelGrid columns="2" columnClasses="label, value"
+							styleClass="grid">
+							<h:outputText value="Nome: " />
+							<h:outputText label="Nome"
+								value="#{minhaContaBean.usuario.nomeUsuario}" />
+
+							<h:outputText value="Data de Nascimento: " />
+							<h:outputText
+								value="#{minhaContaBean.usuario.nascimentoUsuario.time}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+
+							<h:outputText value="Rua/Avenida " />
+							<h:outputText value="#{minhaContaBean.usuario.enderecoUsuario}"
+								label="Rua/Avenida" />
+
+							<h:outputText value="Código Postal: " />
+							<h:outputText
+								value="#{minhaContaBean.usuario.codigoPostalusuario}"
+								label="Código Postal" />
+
+							<h:outputText value="Cidade: " />
+							<h:outputText value="#{minhaContaBean.usuario.cidadeUsuario}"
+								label="Cidade" />
+
+							<h:outputText value="Estado: " />
+							<h:outputText value="#{minhaContaBean.usuario.estadoUsuario}"
+								label="Estado" />
+
+							<h:outputText value="País: " />
+							<h:outputText value="#{minhaContaBean.usuario.paisUsuario}"
+								label="País" />
+
+							<h:outputText value="Email: " />
+							<h:outputText label="Email"
+								value="#{minhaContaBean.usuario.emailUsuario}" />
+
+							<h:outputText value="Telefone: " />
+							<p:dataList value="#{minhaContaBean.usuario.telefoneUsuario}"
+								var="telefone">
+								#{telefone.numeroTelefone}
+							</p:dataList>
+
+							<h:outputText value="Pergunta Secreta: "></h:outputText>
+							<h:outputText id="pergunta"
+								value="#{minhaContaBean.usuario.perguntaSecretaUsuario}"></h:outputText>
+
+
+						</h:panelGrid>
+						<h:commandLink action="#{controllerLinks.irParaAlteracaoUsuario}">
+							<h:outputText value="Atualizar Minhas Informações" />
+						</h:commandLink>
+						<br></br>
+						<h:commandLink action="#{controllerLinks.irParaAlteracaoSenha}">
+							<h:outputText value="Mudar Minha Senha" />
+						</h:commandLink>
+					</p:tab>
+
+					<p:tab title="Configurações da Conta">
+
+					</p:tab>
+
+				</p:tabView>
+			</p:panel>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+
+
+</html>

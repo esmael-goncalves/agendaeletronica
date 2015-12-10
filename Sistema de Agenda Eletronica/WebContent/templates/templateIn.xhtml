@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Gato a Jato - Sistema de Agenda Eletrônica</title>
+	<link rel="stylesheet" href="style.css" type="text/css" />
+</h:head>
+
+<h:body background="imagens/Couro-Branco.jpg">
+	<div id="header" align="center">
+		<img class="logo" src="imagens/logo2.png" />
+
+	</div>
+	<div id="header2" align="right">
+
+		<h:form>
+			<p:button outcome="minha-conta" value="Minha Conta"
+				icon="ui-icon-person">
+			</p:button>
+			<p:commandButton action="#{loginBean.sair}" value="Sair"
+				icon="ui-icon-closethick" />
+
+			<br></br>
+
+			<h:outputLabel for="link" value="Bem Vindo: " />
+			<h:commandLink id="link" action="#{controllerLinks.irParaMinhaConta}">
+				<h:outputLabel value="#{minhaContaBean.usuario.nomeUsuario}"></h:outputLabel>
+			</h:commandLink>
+		</h:form>
+	</div>
+
+	<div id="comandos">
+
+		<p:menubar>
+			<p:submenu label="Contatos" icon="ui-icon-contact">
+					<p:menuitem value="Adicionar" url="cadastro-contato.xhtml" />
+					<p:menuitem value="Listar" url="lista-contato.xhtml" />
+			</p:submenu>
+			
+			<p:submenu label="Compromissos" icon="ui-icon-note">
+					<p:menuitem value="Adicionar" url="cadastro-compromisso.xhtml" />
+					<p:menuitem value="Listar" url="lista-compromisso.xhtml" />
+			</p:submenu>
+			
+			<p:submenu label="Relatórios" icon="ui-icon-note">
+					<p:menuitem value="Contatos" url="relatorio-contatos.xhtml" />
+					<p:menuitem value="Compromissos" url="relatorio-compromissos.xhtml" />
+			</p:submenu>
+			
+			<p:submenu label="Interação" icon="ui-icon-note">
+					<p:menuitem value="Contatos" url="timeline-twitter.xhtml" />
+			</p:submenu>
+
+		</p:menubar>
+
+		<br></br>
+
+	</div>
+
+	<ui:insert name="conteudo"> Espaço para o conteúdo da tela </ui:insert>
+
+
+	<div id="footer" style="text-align: center" align="center">
+		<hr />
+		&copy; 2012 Gato a Jato. Todos os direitos reservados.
+	</div>
+</h:body>
+</html>

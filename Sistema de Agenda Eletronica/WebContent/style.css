@@ -1,0 +1,104 @@
+@CHARSET "ISO-8859-1";
+
+html {
+font-family: "Calibri";
+font-size: 12pt;
+display: block;
+}
+
+.logo {
+	vertical-align:middle;
+}
+
+.botao-form {
+	background-color: #000000;
+	margin: 10px 15px 10px 5px;
+	color: white;
+	text-decoration: none;
+	font-size: 18px;
+	line-height: 20px;
+	padding: 2px 2px;
+	vertical-align: middle;
+	border: 1px solid #5c6f91;
+	box-shadow: inset 0 1px 0 0 #aec3e5;
+}
+
+.botao {
+	background-color: #000000;
+	margin: 2.5px;
+	color: white;
+	text-decoration: none;
+	font-size: 18px;
+	line-height: 20px;
+	padding: 5px 5px;
+	vertical-align: middle;
+	border: 1px solid #5c6f91;
+	box-shadow: inset 0 1px 0 0 #aec3e5;
+}
+
+.botao:hover {
+	background-color: #cccccc;
+	color: #666666;
+}
+.botao-form:hover {
+	background-color: #cccccc;
+	color: #666666;
+}
+
+
+.formulario fieldset {
+	background-color: #064D83;
+	vertical-align:middle;
+	float: left;
+	margin: 0 0 20px 0;
+	border: 1px solid #333333;
+}
+
+.formulario{
+	background-color: #000000;
+	color: white;
+	font-size: 18px;
+	padding: 6px;
+	size: 100px;
+	border: 1px solid #5c6f91;
+	box-shadow: inset 0 1px 0 0 #aec3e5;
+	float: center;
+	margin-right: 5px;
+}
+
+.formulario fieldset legend {
+	color: #064D83;
+	font-weight: bold;
+}
+
+.botao-formulario {
+	background-color: #064D83;
+	color: #ffffff;
+	padding: 5px;
+	vertical-align: middle;
+	border: none;
+}
+
+.mensagem-erro {
+	color: #ff0000;
+}
+
+.titulo {
+	color: #064D83;
+	clear: both;
+}
+
+.tabela {
+	border: 1px solid #064D83;
+	border-collapse: collapse;
+}
+
+.tabela tr th {
+	background-color: #064D83;
+	color: #ffffff;
+}
+
+.tabela tr th,.tabela tr td {
+	border: 1px solid #064D83;
+	padding: 2px 5px;
+}

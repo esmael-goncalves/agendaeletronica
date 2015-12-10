@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Gato a Jato - Sistema de Agenda Eletrônica</title>
+	<link rel="stylesheet" href="style.css" type="text/css" />
+</h:head>
+
+<h:body background="imagens\Couro-Branco.jpg">
+	
+	<div id="header" align="center">
+		<img class="logo" src="imagens\logo2.png" />
+
+	</div>
+	
+	<div id="header2" align="right">
+		<p:button outcome="cadastro-usuario" value="Cadastro" icon="ui-icon-person">
+		</p:button>
+		<p:button outcome="login" value="Login" icon="ui-icon-key">
+		</p:button>
+	</div>
+
+	<div id="comandos">
+		<p:breadCrumb>
+			<p:menuitem value="Home" url="indexout.xhtml" />
+			<p:menuitem value="A empresa" url="sobre-empresa.xhtml" />
+			<p:menuitem value="Agenda Eletronica" url="sobre-agenda-eletronica.xhtml" />
+			<p:menuitem value="Fale Conosco" url="faleconosco.xhtml" />
+		</p:breadCrumb>
+		<br></br>
+	</div>
+	
+
+	<ui:insert name="conteudo"> Espaço para o conteúdo da tela </ui:insert>
+	
+	
+
+
+	<div id="footer" style="text-align: center" align="center">
+		<hr />
+		&copy; 2012 Gato a Jato. Todos os direitos reservados.
+	</div>
+</h:body>
+</html>

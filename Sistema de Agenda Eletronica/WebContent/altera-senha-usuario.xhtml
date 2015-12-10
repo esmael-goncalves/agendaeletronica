@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/templateIn.xhtml">
+	<ui:define name="conteudo">
+		<h:form>
+			<p:panel header="Alterar Senha" >
+				<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+				<h:panelGrid columns="2" cellpadding="10">
+					<h:outputLabel for="senha" value="Nova Senha: *" />
+					<p:password id="senha" feedback="true" required="true"
+						label="Senha" style="width:350px"
+						value="#{minhaConta.usuario.senhaUsuario}" size="6">
+					</p:password>
+
+					<h:outputLabel for="senha-confirm"
+						value="Confirmação da Nova Senha: *" />
+					<p:password id="senha-confirm" feedback="false" required="true"
+						label="Confirmação de Senha" style="width:350px"
+						value="#{minhaConta.senha}" size="6">
+					</p:password>
+
+					<p:commandButton value="Alterar" update="@form"
+						actionListener="#{minhaConta.alterarSenha}" icon="ui-icon-disk" />
+				</h:panelGrid>
+
+			</p:panel>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+
+</html>
